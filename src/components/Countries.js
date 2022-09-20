@@ -2,14 +2,21 @@ import React from 'react';
 
 import { v4 as uuidv4 } from "uuid";
 import Country from './Country';
+import style from "./countries.module.css";
 
 const Countries = (props) => {
   return (
-    <section>
+    <section className={style.Countries}>
         {props.Countries.map((country) => {
-            const contryNew = { country, id: uuidv4() };
+            const countryNew = { country, id: uuidv4() };
 
-            return <Country { ... contryNew} key={contryNew.id} />;
+            return ( 
+              <Country 
+                {...countryNew} 
+                key={countryNew.id}
+                onRemoveCountry={props.onRemoveCountry}
+              />
+            );
         })}
     </section>
   );
