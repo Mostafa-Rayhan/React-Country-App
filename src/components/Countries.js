@@ -5,9 +5,13 @@ import Country from './Country';
 import style from "./countries.module.css";
 
 const Countries = (props) => {
+  console.log(props.countries)
   return (
-    <section className={style.Countries}>
-        {props.Countries.map((country) => {
+    // <section className={style.Countries}>
+      //  <div className="row">
+      <div  className="row g-5 container">
+
+{props.countries.map((country) => {
             const countryNew = { country, id: uuidv4() };
 
             return ( 
@@ -18,7 +22,11 @@ const Countries = (props) => {
               />
             );
         })}
-    </section>
+
+      </div>
+       
+      //  </div>
+    // </section>
   );
 };
 

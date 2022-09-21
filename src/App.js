@@ -4,7 +4,7 @@ import Countries from "./components/Countries";
 import "./App.css";
 import Search from "./components/Search";
 
-const url = "https://restcountries.com/v3.1/all";
+// const url = "https://restcountries.com/v3.1/all";
 
 const App = () => {
 
@@ -13,27 +13,34 @@ const App = () => {
   const [countries, setCountries] = useState([]);
   const [filteredCountries, setFilteredCountries] = useState(countries);
 
-  const fetchData = async (url) => {
-    setIsLoading(true);
+  // const fetchData = async (url) => {
+  //   setIsLoading(true);
 
-    try{
-      const response = await fetch(url);
-      const data = await response.json();
+  fetch('https://restcountries.com/v3.1/all')
+  .then(res=>res.json())
+  .then(data=>{
+    setCountries(data)
+    setFilteredCountries(data)
+  })
 
-      setCountries(data);
-      setFilteredCountries(data);
-      setIsLoading(false);
-      setError(null);
-    }
-    catch(error){
-      setIsLoading(false);
-      setError(error);
-    }
-  }
+  //   try{
+  //     const response = await fetch(url);
+  //     const data = await response.json();
 
-  useEffect(() => {
-    fetchData(url);
-  }, []);
+  //     setCountries(data);
+  //     setFilteredCountries(data);
+  //     setIsLoading(false);
+  //     setError(null);
+  //   }
+  //   catch(error){
+  //     setIsLoading(false);
+  //     setError(error);
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   fetchData(url);
+  // }, []);
 
   const handleRemoveCountry = (name) => {
     const filter = filteredCountries.filter((country) => 
